@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umar Analytics</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #080b10;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #38bdf8;
+}
+
+.profile {
+    background: #17212e;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.welcome {
+    margin-bottom: 25px;
+}
+
+.welcome h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: #8492a6;
+    font-size: 13px;
+}
+
+.section-title {
+    font-size: 16px;
+    margin: 25px 0 15px;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.card {
+    background: #111823;
+    border: 1px solid #202b39;
+    border-radius: 14px;
+    padding: 17px;
+}
+
+.card p {
+    color: #8996a8;
+    font-size: 12px;
+    margin-bottom: 13px;
+}
+
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 8px;
+}
+
+.change {
+    color: #34d399;
+    font-size: 11px;
+}
+
+.blue { color: #38bdf8; }
+.orange { color: #fb923c; }
+.purple { color: #c084fc; }
+.green { color: #34d399; }
+
+.chart-box {
+    background: #111823;
+    border: 1px solid #202b39;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.chart-box p {
+    color: #8492a6;
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.chart {
+    width: 100%;
+    height: 130px;
+}
+
+.chart polyline {
+    fill: none;
+    stroke: #38bdf8;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.chart .area {
+    fill: url(#fade);
+    stroke: none;
+}
+
+.transaction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    border-bottom: 1px solid #202b39;
+    gap: 10px;
+}
+
+.transaction p {
+    font-size: 13px;
+}
+
+.transaction small {
+    display: block;
+    color: #8492a6;
+    margin-top: 5px;
+}
+
+.amount {
+    color: #34d399;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+button {
+    border: none;
+    background: #38bdf8;
+    color: #06111b;
+    padding: 13px 17px;
+    border-radius: 9px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.action {
+    width: 100%;
+    margin-top: 18px;
+}
+
+.inventory {
+    background: #111823;
+    padding: 17px;
+    border: 1px solid #202b39;
+    border-radius: 14px;
+}
+
+.product {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 0;
+    border-bottom: 1px solid #202b39;
+    font-size: 13px;
+}
+
+.stock {
+    color: #34d399;
+}
+
+.low {
+    color: #fb923c;
+}
+
+footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 11px;
+    margin: 35px 0 15px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">UMAR<span> ANALYTICS</span></div>
+    <div class="profile">👤</div>
+</header>
+
+<section class="welcome">
+    <h2>Business Overview</h2>
+    <p>Welcome back! Here's how your business is performing.</p>
+</section>
+
+<h3 class="section-title">Performance Overview</h3>
+
+<section class="stats">
+
+    <div class="card">
+        <p>Total Revenue</p>
+        <h3 class="blue" id="revenue">₦850,000</h3>
+        <span class="change">↑ Business income</span>
+    </div>
+
+    <div class="card">
+        <p>Total Expenses</p>
+        <h3 class="orange">₦320,000</h3>
+        <span class="change">Business spending</span>
+    </div>
+
+    <div class="card">
+        <p>Net Profit</p>
+        <h3 class="green" id="profit">₦530,000</h3>
+        <span class="change">Estimated profit</span>
+    </div>
+
+    <div class="card">
+        <p>Total Sales</p>
+        <h3 class="purple" id="sales">124</h3>
+        <span class="change">Recorded transactions</span>
+    </div>
+
+</section>
+
+<h3 class="section-title">Sales Performance</h3>
+
+<div class="chart-box">
+    <p>Revenue throughout the week</p>
+
+    <svg class="chart" viewBox="0 0 320 130"
+         preserveAspectRatio="none">
+        <defs>
+            <linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#38bdf8" stop-opacity=".3"/>
+                <stop offset="100%" stop-color="#38bdf8" stop-opacity="0"/>
+            </linearGradient>
+        </defs>
+
+        <line x1="0" y1="30" x2="320" y2="30"
+              stroke="#283442" stroke-dasharray="4"/>
+        <line x1="0" y1="70" x2="320" y2="70"
+              stroke="#283442" stroke-dasharray="4"/>
+        <line x1="0" y1="110" x2="320" y2="110"
+              stroke="#283442" stroke-dasharray="4"/>
+
+        <polygon class="area"
+            points="0,100 50,75 100,85 150,45 200,60 250,25 320,10 320,130 0,130"/>
+
+        <polyline
+            points="0,100 50,75 100,85 150,45 200,60 250,25 320,10"/>
+    </svg>
+</div>
+
+<h3 class="section-title">Recent Transactions</h3>
+
+<div class="inventory" id="transactions">
+    <div class="transaction">
+        <div>
+            <p>Food items</p>
+            <small>Today · 10:30 AM</small>
+        </div>
+        <span class="amount">+₦45,000</span>
+    </div>
+
+    <div class="transaction">
+        <div>
+            <p>Beverages</p>
+            <small>Today · 09:15 AM</small>
+        </div>
+        <span class="amount">+₦28,000</span>
+    </div>
+
+    <div class="transaction">
+        <div>
+            <p>Household items</p>
+            <small>Yesterday</small>
+        </div>
+        <span class="amount">+₦15,500</span>
+    </div>
+</div>
+
+<button class="action" onclick="recordSale()">
+    + Record New Sale
+</button>
+
+<h3 class="section-title">Inventory Overview</h3>
+
+<div class="inventory">
+    <div class="product">
+        <span>Rice (50kg)</span>
+        <span class="stock">35 units</span>
+    </div>
+
+    <div class="product">
+        <span>Cooking Oil</span>
+        <span class="stock">48 units</span>
+    </div>
+
+    <div class="product">
+        <span>Soft Drinks</span>
+        <span class="low">5 units · Low stock</span>
+    </div>
+
+    <div class="product">
+        <span>Milk</span>
+        <span class="stock">27 units</span>
+    </div>
+</div>
+
+<footer>
+    UMAR ANALYTICS © 2026
+    <br><br>
+    Smart Business Management
+</footer>
+
+<script>
+let revenue = Number(localStorage.getItem("uaRevenue")) || 850000;
+let sales = Number(localStorage.getItem("uaSales")) || 124;
+const expenses = 320000;
+
+function updateDashboard() {
+    document.getElementById("revenue").textContent =
+        "₦" + revenue.toLocaleString("en-NG");
+
+    document.getElementById("profit").textContent =
+        "₦" + (revenue - expenses).toLocaleString("en-NG");
+
+    document.getElementById("sales").textContent =
+        sales.toLocaleString("en-NG");
+}
+
+function recordSale() {
+    let amount = Number(prompt("Enter sale amount in Naira:"));
+
+    if (!Number.isFinite(amount) || amount <= 0) {
+        alert("Please enter a valid sale amount.");
+        return;
+    }
+
+    revenue += amount;
+    sales++;
+
+    localStorage.setItem("uaRevenue", revenue);
+    localStorage.setItem("uaSales", sales);
+
+    const transaction = document.createElement("div");
+    transaction.className = "transaction";
+
+    const details = document.createElement("div");
+    const name = document.createElement("p");
+    name.textContent = "New sale";
+    const time = document.createElement("small");
+    time.textContent = new Date().toLocaleString();
+
+    details.append(name, time);
+
+    const value = document.createElement("span");
+    value.className = "amount";
+    value.textContent = "+₦" + amount.toLocaleString("en-NG");
+
+    transaction.append(details, value);
+
+    document.getElementById("transactions")
+        .prepend(transaction);
+
+    updateDashboard();
+    alert("Sale recorded successfully!");
+}
+
+updateDashboard();
+</script>
+
+</body>
+</html>
